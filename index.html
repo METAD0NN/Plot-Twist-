@@ -1,80 +1,248 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PLOT TWIST - Gallery Style</title>
-<style>
-  body {
-    background-color: black;
-    color: white;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-  }
-  h1 {
-    text-align: center;
-    font-weight: 700;
-    font-size: 3rem;
-    margin-bottom: 40px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .item img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    filter: brightness(0.9);
-    transition: filter 0.3s ease;
-  }
-  .item img:hover {
-    filter: brightness(1);
-    cursor: pointer;
-  }
-  .label {
-    margin-top: 8px;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PLOT TWIST — LUGAS BLUE</title>
+
+  <!-- Google fonts (ľahké, ak chceš offline, odstráň) -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- Base --- */
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --muted: rgba(255,255,255,0.55);
+    }
+    * { box-sizing: border-box; }
+    html,body { height:100%; margin:0; padding:0; background:var(--bg); color:var(--fg); font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
+    /* --- Layout --- */
+    .wrap {
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      text-align:center;
+      padding:4vh 4vw;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* --- Big title + glitch --- */
+    h1.title {
+      font-family: 'Anton', sans-serif;
+      font-size:clamp(48px, 10vw, 120px);
+      margin:0;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      line-height:0.9;
+      position:relative;
+      transform:translateZ(0);
+    }
+
+    /* Colored RGB glitch layers */
+    h1.title::before,
+    h1.title::after {
+      content: attr(data-text);
+      position:absolute;
+      left:0; top:0;
+      width:100%; height:100%;
+      overflow:hidden;
+      clip-path: inset(0 0 0 0);
+      pointer-events:none;
+    }
+    h1.title::before { 
+      color: rgba(255,0,0,0.8);
+      z-index:1;
+      transform: translate(4px, -3px);
+      mix-blend-mode: screen;
+      animation: glitch-anim-1 2.2s infinite;
+      opacity:0.9;
+    }
+    h1.title::after { 
+      color: rgba(0,200,255,0.85);
+      z-index:2;
+      transform: translate(-4px, 3px);
+      mix-blend-mode: screen;
+      animation: glitch-anim-2 2.5s infinite;
+      opacity:0.85;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% { transform: translate(4px,-3px) skewX(0deg); clip-path: inset(0 0 0 0); }
+      30% { transform: translate(0px,0px) skewX(8deg); clip-path: inset(10% 0 70% 0); }
+      60% { transform: translate(6px,-6px) skewX(-6deg); clip-path: inset(50% 0 20% 0); }
+      100% { transform: translate(4px,-3px) skewX(0deg); clip-path: inset(0 0 0 0); }
+    }
+    @keyframes glitch-anim-2 {
+      0% { transform: translate(-4px,3px) skewX(0deg); clip-path: inset(0 0 0 0); }
+      25% { transform: translate(-2px,2px) skewX(-6deg); clip-path: inset(60% 0 10% 0); }
+      55% { transform: translate(-6px,6px) skewX(6deg); clip-path: inset(20% 0 50% 0); }
+      100% { transform: translate(-4px,3px) skewX(0deg); clip-path: inset(0 0 0 0); }
+    }
+
+    /* subtitle */
+    p.lead {
+      margin: 14px 0 0 0;
+      color:var(--muted);
+      font-size:clamp(14px, 2.2vw, 20px);
+    }
+
+    /* countdown */
+    #countdown {
+      margin-top:28px;
+      font-size:clamp(20px, 3.2vw, 36px);
+      font-weight:600;
+      letter-spacing:0.03em;
+    }
+
+    /* teaser area */
+    .teaser {
+      margin-top:30px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .teaser img {
+      width:130px;
+      height:130px;
+      object-fit:cover;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .audio {
+      max-width:340px;
+      width:100%;
+    }
+
+    /* socials / buttons */
+    .actions {
+      margin-top:26px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .btn {
+      padding:10px 16px;
+      border-radius:6px;
+      text-decoration:none;
+      color:var(--fg);
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      font-weight:600;
+      font-size:14px;
+      transition: transform .12s ease, opacity .12s;
+    }
+    .btn:hover { transform: translateY(-3px); opacity:0.95; }
+
+    /* small footer */
+    footer {
+      position: absolute;
+      bottom:14px;
+      left:0; right:0;
+      text-align:center;
+      color:rgba(255,255,255,0.12);
+      font-size:12px;
+      pointer-events:none;
+    }
+
+    /* subtle film grain overlay */
+    .grain {
+      pointer-events:none;
+      position:absolute;
+      inset:0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"><rect width="8" height="8" fill="%23000000" fill-opacity="0.02"/></svg>');
+      mix-blend-mode: overlay;
+      opacity:0.5;
+    }
+
+    /* responsive tweaks */
+    @media (max-width:480px) {
+      .teaser img { width:100px; height:100px; }
+      #countdown { font-size:20px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>PLOT TWIST COLLECTION</h1>
-  <div class="gallery">
-    <div class="item">
-      <img src="ts-01.png" alt="TS-01" />
-      <div class="label">TS-01</div>
+  <div class="wrap">
+    <!-- Title: zmeň text v data-text ak chceš iný -->
+    <h1 class="title" data-text="PLOT TWIST">PLOT TWIST</h1>
+    <p class="lead">NEW ALBUM BY LUGAS BLUE — upcoming in few weeks</p>
+
+    <!-- Countdown: nastav releaseDate v JS nižšie -->
+    <div id="countdown">loading...</div>
+
+    <!-- Teaser: pridaj artwork.png a/nebo preview.mp3 do rovnakého priečinka -->
+    <div class="teaser">
+      <!-- Ak nemáš artwork.png, nahraď url vlastnou alebo odstráň <img> -->
+      <img src="artwork.png" alt="PLOT TWIST artwork (replace artwork.png)" onerror="this.style.display='none'">
+      
+      <!-- audio preview (voliteľné) -->
+      <div class="audio">
+        <!-- Ak nechceš audio, stačí vymazať celé audio element -->
+        <audio controls preload="none">
+          <source src="preview.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
     </div>
-    <div class="item">
-      <img src="ts-02.png" alt="TS-02" />
-      <div class="label">TS-02</div>
+
+    <!-- actions / socials -->
+    <div class="actions">
+      <a class="btn" href="#" target="_blank" rel="noopener">Pre-order / Spotify</a>
+      <a class="btn" href="#" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn" href="#" target="_blank" rel="noopener">YouTube</a>
+      <a class="btn" href="#" target="_blank" rel="noopener">Contact / Press</a>
     </div>
-    <div class="item">
-      <img src="hd-01.png" alt="HD-01" />
-      <div class="label">HD-01</div>
-    </div>
-    <div class="item">
-      <img src="wb-01.png" alt="WB-01" />
-      <div class="label">WB-01</div>
-    </div>
-    <div class="item">
-      <img src="rc-01.png" alt="RC-01" />
-      <div class="label">RC-01</div>
-    </div>
-    <!-- Pridaj ďalšie podľa potreby -->
+
+    <footer>Release date: <span id="release-date-text">—</span></footer>
+
+    <div class="grain" aria-hidden="true"></div>
   </div>
+
+  <script>
+    /* ====== NASTAVENIA ======
+       Zmeň dátum tu (formát ISO): YEAR-MONTH-DAYTHH:MM:SS (UTC alebo lokálny)
+       Napríklad: "2025-08-30T00:00:00" 
+       Ak chceš presnejší čas, nastav timezone v stringu alebo počítaj lokálne.
+    */
+    const RELEASE_DATE_STR = "2025-08-30T00:00:00"; // <-- uprav si sem dátum
+    const releaseDate = new Date(RELEASE_DATE_STR).getTime();
+
+    // zobrazenie release dátumu v pätičke (čitateľne)
+    const releaseTextEl = document.getElementById('release-date-text');
+    const niceDate = new Date(RELEASE_DATE_STR);
+    releaseTextEl.textContent = isNaN(niceDate) ? '–' : niceDate.toLocaleString('sk-SK', { year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+
+    // countdown
+    const countdownEl = document.getElementById('countdown');
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = releaseDate - now;
+      if (isNaN(releaseDate)) { countdownEl.textContent = 'Release date not set'; return; }
+      if (diff <= 0) {
+        countdownEl.textContent = 'OUT NOW';
+        return;
+      }
+
+      const sec = Math.floor(diff / 1000);
+      const days = Math.floor(sec / (3600*24));
+      const hours = Math.floor((sec % (3600*24)) / 3600);
+      const minutes = Math.floor((sec % 3600) / 60);
+      const seconds = sec % 60;
+
+      // formát: 12d 04h 23m 09s
+      countdownEl.textContent = `${days}d ${String(hours).padStart(2,'0')}h ${String(minutes).padStart(2,'0')}m ${String(seconds).padStart(2,'0')}s`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
