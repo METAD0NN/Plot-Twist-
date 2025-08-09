@@ -1,248 +1,208 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PLOT TWIST — LUGAS BLUE</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lugas Blue — PLOT TWIST</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 
-  <!-- Google fonts (ľahké, ak chceš offline, odstráň) -->
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+  body {
+    margin: 0;
+    background: #0a0a0a url('https://www.transparenttextures.com/patterns/grain.png') repeat;
+    color: #eee;
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow-x: hidden;
+  }
 
-  <style>
-    /* --- Base --- */
-    :root {
-      --bg: #000;
-      --fg: #fff;
-      --muted: rgba(255,255,255,0.55);
-    }
-    * { box-sizing: border-box; }
-    html,body { height:100%; margin:0; padding:0; background:var(--bg); color:var(--fg); font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+  /* Glitch text effect */
+  .glitch {
+    position: relative;
+    font-size: 6vw;
+    color: #eee;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    animation: flicker 2s infinite;
+  }
 
-    /* --- Layout --- */
-    .wrap {
-      min-height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      text-align:center;
-      padding:4vh 4vw;
-      position:relative;
-      overflow:hidden;
-    }
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0.8;
+    clip: rect(0, 900px, 0, 0);
+  }
 
-    /* --- Big title + glitch --- */
-    h1.title {
-      font-family: 'Anton', sans-serif;
-      font-size:clamp(48px, 10vw, 120px);
-      margin:0;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      line-height:0.9;
-      position:relative;
-      transform:translateZ(0);
-    }
+  .glitch::before {
+    animation: glitchTop 2s infinite;
+    color: #6589a7; /* dirty blue */
+    z-index: -1;
+  }
 
-    /* Colored RGB glitch layers */
-    h1.title::before,
-    h1.title::after {
-      content: attr(data-text);
-      position:absolute;
-      left:0; top:0;
-      width:100%; height:100%;
-      overflow:hidden;
-      clip-path: inset(0 0 0 0);
-      pointer-events:none;
-    }
-    h1.title::before { 
-      color: rgba(255,0,0,0.8);
-      z-index:1;
-      transform: translate(4px, -3px);
-      mix-blend-mode: screen;
-      animation: glitch-anim-1 2.2s infinite;
-      opacity:0.9;
-    }
-    h1.title::after { 
-      color: rgba(0,200,255,0.85);
-      z-index:2;
-      transform: translate(-4px, 3px);
-      mix-blend-mode: screen;
-      animation: glitch-anim-2 2.5s infinite;
-      opacity:0.85;
-    }
+  .glitch::after {
+    animation: glitchBottom 2s infinite;
+    color: #fff;
+    z-index: -2;
+  }
 
-    @keyframes glitch-anim-1 {
-      0% { transform: translate(4px,-3px) skewX(0deg); clip-path: inset(0 0 0 0); }
-      30% { transform: translate(0px,0px) skewX(8deg); clip-path: inset(10% 0 70% 0); }
-      60% { transform: translate(6px,-6px) skewX(-6deg); clip-path: inset(50% 0 20% 0); }
-      100% { transform: translate(4px,-3px) skewX(0deg); clip-path: inset(0 0 0 0); }
+  @keyframes glitchTop {
+    0% {
+      clip: rect(0, 900px, 0, 0);
+      transform: translate(0);
     }
-    @keyframes glitch-anim-2 {
-      0% { transform: translate(-4px,3px) skewX(0deg); clip-path: inset(0 0 0 0); }
-      25% { transform: translate(-2px,2px) skewX(-6deg); clip-path: inset(60% 0 10% 0); }
-      55% { transform: translate(-6px,6px) skewX(6deg); clip-path: inset(20% 0 50% 0); }
-      100% { transform: translate(-4px,3px) skewX(0deg); clip-path: inset(0 0 0 0); }
+    10% {
+      clip: rect(0, 900px, 40px, 0);
+      transform: translate(-2px, -2px);
     }
+    20% {
+      clip: rect(0, 900px, 0, 0);
+      transform: translate(0);
+    }
+    30% {
+      clip: rect(10px, 900px, 50px, 0);
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      clip: rect(0, 900px, 0, 0);
+      transform: translate(0);
+    }
+    100% {
+      clip: rect(0, 900px, 0, 0);
+      transform: translate(0);
+    }
+  }
 
-    /* subtitle */
-    p.lead {
-      margin: 14px 0 0 0;
-      color:var(--muted);
-      font-size:clamp(14px, 2.2vw, 20px);
+  @keyframes glitchBottom {
+    0% {
+      clip: rect(0, 900px, 0, 0);
+      transform: translate(0);
     }
+    10% {
+      clip: rect(30px, 900px, 60px, 0);
+      transform: translate(2px, 2px);
+    }
+    20% {
+      clip: rect(0, 900px, 0, 0);
+      transform: translate(0);
+    }
+    30% {
+      clip: rect(30px, 900px, 60px, 0);
+      transform: translate(2px, -2px);
+    }
+    40% {
+      clip: rect(0, 900px, 0, 0);
+      transform: translate(0);
+    }
+    100% {
+      clip: rect(0, 900px, 0, 0);
+      transform: translate(0);
+    }
+  }
 
-    /* countdown */
-    #countdown {
-      margin-top:28px;
-      font-size:clamp(20px, 3.2vw, 36px);
-      font-weight:600;
-      letter-spacing:0.03em;
-    }
+  @keyframes flicker {
+    0%, 100% {opacity: 1;}
+    45% {opacity: 0.85;}
+    55% {opacity: 0.9;}
+    70% {opacity: 0.85;}
+  }
 
-    /* teaser area */
-    .teaser {
-      margin-top:30px;
-      display:flex;
-      gap:18px;
-      align-items:center;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .teaser img {
-      width:130px;
-      height:130px;
-      object-fit:cover;
-      border-radius:8px;
-      border:1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    }
-    .audio {
-      max-width:340px;
-      width:100%;
-    }
+  /* Release date styling */
+  .release-date {
+    margin-top: 1rem;
+    font-size: 3vw;
+    color: #6589a7; /* dirty blue */
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    animation: flicker 3s infinite;
+  }
 
-    /* socials / buttons */
-    .actions {
-      margin-top:26px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      justify-content:center;
+  /* Buttons container */
+  .btns {
+    margin-top: 3rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    background-color: #6589a7;
+    color: #0a0a0a;
+    border: none;
+    padding: 0.8rem 2.5rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgb(101 137 167 / 0.7);
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    background-color: #4a647d;
+  }
+
+  /* Social icons */
+  .social {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .social a {
+    color: #6589a7;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .social a:hover {
+    color: #a1b9ce;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .glitch {
+      font-size: 12vw;
+    }
+    .release-date {
+      font-size: 5vw;
     }
     .btn {
-      padding:10px 16px;
-      border-radius:6px;
-      text-decoration:none;
-      color:var(--fg);
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.06);
-      font-weight:600;
-      font-size:14px;
-      transition: transform .12s ease, opacity .12s;
+      padding: 0.7rem 2rem;
+      font-size: 1rem;
     }
-    .btn:hover { transform: translateY(-3px); opacity:0.95; }
-
-    /* small footer */
-    footer {
-      position: absolute;
-      bottom:14px;
-      left:0; right:0;
-      text-align:center;
-      color:rgba(255,255,255,0.12);
-      font-size:12px;
-      pointer-events:none;
-    }
-
-    /* subtle film grain overlay */
-    .grain {
-      pointer-events:none;
-      position:absolute;
-      inset:0;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"><rect width="8" height="8" fill="%23000000" fill-opacity="0.02"/></svg>');
-      mix-blend-mode: overlay;
-      opacity:0.5;
-    }
-
-    /* responsive tweaks */
-    @media (max-width:480px) {
-      .teaser img { width:100px; height:100px; }
-      #countdown { font-size:20px; }
-    }
-  </style>
+  }
+</style>
+<!-- FontAwesome for social icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="wrap">
-    <!-- Title: zmeň text v data-text ak chceš iný -->
-    <h1 class="title" data-text="PLOT TWIST">PLOT TWIST</h1>
-    <p class="lead">NEW ALBUM BY LUGAS BLUE — upcoming in few weeks</p>
 
-    <!-- Countdown: nastav releaseDate v JS nižšie -->
-    <div id="countdown">loading...</div>
+  <h1 class="glitch" data-text="PLOT TWIST">PLOT TWIST</h1>
+  <div class="release-date">August 25</div>
 
-    <!-- Teaser: pridaj artwork.png a/nebo preview.mp3 do rovnakého priečinka -->
-    <div class="teaser">
-      <!-- Ak nemáš artwork.png, nahraď url vlastnou alebo odstráň <img> -->
-      <img src="artwork.png" alt="PLOT TWIST artwork (replace artwork.png)" onerror="this.style.display='none'">
-      
-      <!-- audio preview (voliteľné) -->
-      <div class="audio">
-        <!-- Ak nechceš audio, stačí vymazať celé audio element -->
-        <audio controls preload="none">
-          <source src="preview.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-
-    <!-- actions / socials -->
-    <div class="actions">
-      <a class="btn" href="#" target="_blank" rel="noopener">Pre-order / Spotify</a>
-      <a class="btn" href="#" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn" href="#" target="_blank" rel="noopener">YouTube</a>
-      <a class="btn" href="#" target="_blank" rel="noopener">Contact / Press</a>
-    </div>
-
-    <footer>Release date: <span id="release-date-text">—</span></footer>
-
-    <div class="grain" aria-hidden="true"></div>
+  <div class="btns">
+    <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Listen on Spotify</a>
+    <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Listen on Apple Music</a>
   </div>
 
-  <script>
-    /* ====== NASTAVENIA ======
-       Zmeň dátum tu (formát ISO): YEAR-MONTH-DAYTHH:MM:SS (UTC alebo lokálny)
-       Napríklad: "2025-08-30T00:00:00" 
-       Ak chceš presnejší čas, nastav timezone v stringu alebo počítaj lokálne.
-    */
-    const RELEASE_DATE_STR = "2025-08-30T00:00:00"; // <-- uprav si sem dátum
-    const releaseDate = new Date(RELEASE_DATE_STR).getTime();
+  <div class="social">
+    <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+    <a href="#" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+  </div>
 
-    // zobrazenie release dátumu v pätičke (čitateľne)
-    const releaseTextEl = document.getElementById('release-date-text');
-    const niceDate = new Date(RELEASE_DATE_STR);
-    releaseTextEl.textContent = isNaN(niceDate) ? '–' : niceDate.toLocaleString('sk-SK', { year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
-
-    // countdown
-    const countdownEl = document.getElementById('countdown');
-    function updateCountdown() {
-      const now = Date.now();
-      const diff = releaseDate - now;
-      if (isNaN(releaseDate)) { countdownEl.textContent = 'Release date not set'; return; }
-      if (diff <= 0) {
-        countdownEl.textContent = 'OUT NOW';
-        return;
-      }
-
-      const sec = Math.floor(diff / 1000);
-      const days = Math.floor(sec / (3600*24));
-      const hours = Math.floor((sec % (3600*24)) / 3600);
-      const minutes = Math.floor((sec % 3600) / 60);
-      const seconds = sec % 60;
-
-      // formát: 12d 04h 23m 09s
-      countdownEl.textContent = `${days}d ${String(hours).padStart(2,'0')}h ${String(minutes).padStart(2,'0')}m ${String(seconds).padStart(2,'0')}s`;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
 </body>
 </html>
