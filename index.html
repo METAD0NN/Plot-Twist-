@@ -1,32 +1,114 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>PLOT TWIST — LUGAS BLUE</title>
-    <style>
-      body {
-        background-color: black;
-        color: white;
-        font-family: Helvetica, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-        text-align: center;
-      }
-      h1 {
-        font-size: 5em;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-      p {
-        margin-top: 20px;
-        opacity: 0.6;
-      }
-    </style>
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PLOT TWIST — LUGAS BLUE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Anton', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      animation: glitch 2s infinite;
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 1.5rem;
+      opacity: 0.8;
+      animation: fadeIn 3s ease-in-out infinite alternate;
+    }
+
+    .date {
+      margin-top: 30px;
+      font-size: 2rem;
+      color: red;
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Pohyblivé prvky na pozadí */
+    .floating {
+      position: absolute;
+      background: rgba(255,255,255,0.1);
+      animation: float 10s linear infinite;
+      border-radius: 50%;
+    }
+
+    .floating:nth-child(1) {
+      width: 200px; height: 200px; top: 10%; left: 5%;
+      animation-duration: 12s;
+    }
+
+    .floating:nth-child(2) {
+      width: 150px; height: 150px; bottom: 15%; right: 10%;
+      animation-duration: 15s;
+    }
+
+    .floating:nth-child(3) {
+      width: 300px; height: 300px; top: 50%; left: 70%;
+      animation-duration: 20s;
+    }
+
+    /* Animácie */
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px red; }
+      20% { text-shadow: -2px -2px blue; }
+      40% { text-shadow: 2px -2px lime; }
+      60% { text-shadow: -2px 2px magenta; }
+      80% { text-shadow: 2px 2px cyan; }
+      100% { text-shadow: none; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.6; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-50px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Pohyblivé pozadie -->
+  <div class="floating"></div>
+  <div class="floating"></div>
+  <div class="floating"></div>
+
+  <!-- Obsah stránky -->
+  <div class="container">
     <h1>PLOT TWIST</h1>
     <p>by LUGAS BLUE</p>
-  </body>
+    <div class="date">20.08.2025</div>
+  </div>
+</body>
 </html>
