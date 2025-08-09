@@ -1,114 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PLOT TWIST — LUGAS BLUE</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
-    body {
-      background-color: black;
-      color: white;
-      font-family: 'Anton', sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    h1 {
-      font-size: 6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      animation: glitch 2s infinite;
-    }
-
-    p {
-      margin-top: 10px;
-      font-size: 1.5rem;
-      opacity: 0.8;
-      animation: fadeIn 3s ease-in-out infinite alternate;
-    }
-
-    .date {
-      margin-top: 30px;
-      font-size: 2rem;
-      color: red;
-      animation: pulse 1.5s infinite;
-    }
-
-    /* Pohyblivé prvky na pozadí */
-    .floating {
-      position: absolute;
-      background: rgba(255,255,255,0.1);
-      animation: float 10s linear infinite;
-      border-radius: 50%;
-    }
-
-    .floating:nth-child(1) {
-      width: 200px; height: 200px; top: 10%; left: 5%;
-      animation-duration: 12s;
-    }
-
-    .floating:nth-child(2) {
-      width: 150px; height: 150px; bottom: 15%; right: 10%;
-      animation-duration: 15s;
-    }
-
-    .floating:nth-child(3) {
-      width: 300px; height: 300px; top: 50%; left: 70%;
-      animation-duration: 20s;
-    }
-
-    /* Animácie */
-    @keyframes glitch {
-      0% { text-shadow: 2px 2px red; }
-      20% { text-shadow: -2px -2px blue; }
-      40% { text-shadow: 2px -2px lime; }
-      60% { text-shadow: -2px 2px magenta; }
-      80% { text-shadow: 2px 2px cyan; }
-      100% { text-shadow: none; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.6; }
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-50px) rotate(180deg); }
-      100% { transform: translateY(0) rotate(360deg); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0.4; }
-      to { opacity: 1; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PLOT TWIST - Gallery Style</title>
+<style>
+  body {
+    background-color: black;
+    color: white;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 40px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+  }
+  .item img:hover {
+    filter: brightness(1);
+    cursor: pointer;
+  }
+  .label {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+</style>
 </head>
 <body>
-  <!-- Pohyblivé pozadie -->
-  <div class="floating"></div>
-  <div class="floating"></div>
-  <div class="floating"></div>
-
-  <!-- Obsah stránky -->
-  <div class="container">
-    <h1>PLOT TWIST</h1>
-    <p>by LUGAS BLUE</p>
-    <div class="date">20.08.2025</div>
+  <h1>PLOT TWIST COLLECTION</h1>
+  <div class="gallery">
+    <div class="item">
+      <img src="ts-01.png" alt="TS-01" />
+      <div class="label">TS-01</div>
+    </div>
+    <div class="item">
+      <img src="ts-02.png" alt="TS-02" />
+      <div class="label">TS-02</div>
+    </div>
+    <div class="item">
+      <img src="hd-01.png" alt="HD-01" />
+      <div class="label">HD-01</div>
+    </div>
+    <div class="item">
+      <img src="wb-01.png" alt="WB-01" />
+      <div class="label">WB-01</div>
+    </div>
+    <div class="item">
+      <img src="rc-01.png" alt="RC-01" />
+      <div class="label">RC-01</div>
+    </div>
+    <!-- Pridaj ďalšie podľa potreby -->
   </div>
 </body>
 </html>
