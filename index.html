@@ -1,208 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lugas Blue — PLOT TWIST</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
-
-  body {
-    margin: 0;
-    background: #0a0a0a url('https://www.transparenttextures.com/patterns/grain.png') repeat;
-    color: #eee;
-    font-family: 'Oswald', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow-x: hidden;
-  }
-
-  /* Glitch text effect */
-  .glitch {
-    position: relative;
-    font-size: 6vw;
-    color: #eee;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    animation: flicker 2s infinite;
-  }
-
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    right: 0;
-    opacity: 0.8;
-    clip: rect(0, 900px, 0, 0);
-  }
-
-  .glitch::before {
-    animation: glitchTop 2s infinite;
-    color: #6589a7; /* dirty blue */
-    z-index: -1;
-  }
-
-  .glitch::after {
-    animation: glitchBottom 2s infinite;
-    color: #fff;
-    z-index: -2;
-  }
-
-  @keyframes glitchTop {
-    0% {
-      clip: rect(0, 900px, 0, 0);
-      transform: translate(0);
+  <meta charset="UTF-8">
+  <title>Coming Soon</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fff;
     }
-    10% {
-      clip: rect(0, 900px, 40px, 0);
-      transform: translate(-2px, -2px);
+    img {
+      max-width: 100%;
+      max-height: 100%;
     }
-    20% {
-      clip: rect(0, 900px, 0, 0);
-      transform: translate(0);
-    }
-    30% {
-      clip: rect(10px, 900px, 50px, 0);
-      transform: translate(-2px, 2px);
-    }
-    40% {
-      clip: rect(0, 900px, 0, 0);
-      transform: translate(0);
-    }
-    100% {
-      clip: rect(0, 900px, 0, 0);
-      transform: translate(0);
-    }
-  }
-
-  @keyframes glitchBottom {
-    0% {
-      clip: rect(0, 900px, 0, 0);
-      transform: translate(0);
-    }
-    10% {
-      clip: rect(30px, 900px, 60px, 0);
-      transform: translate(2px, 2px);
-    }
-    20% {
-      clip: rect(0, 900px, 0, 0);
-      transform: translate(0);
-    }
-    30% {
-      clip: rect(30px, 900px, 60px, 0);
-      transform: translate(2px, -2px);
-    }
-    40% {
-      clip: rect(0, 900px, 0, 0);
-      transform: translate(0);
-    }
-    100% {
-      clip: rect(0, 900px, 0, 0);
-      transform: translate(0);
-    }
-  }
-
-  @keyframes flicker {
-    0%, 100% {opacity: 1;}
-    45% {opacity: 0.85;}
-    55% {opacity: 0.9;}
-    70% {opacity: 0.85;}
-  }
-
-  /* Release date styling */
-  .release-date {
-    margin-top: 1rem;
-    font-size: 3vw;
-    color: #6589a7; /* dirty blue */
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    animation: flicker 3s infinite;
-  }
-
-  /* Buttons container */
-  .btns {
-    margin-top: 3rem;
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    background-color: #6589a7;
-    color: #0a0a0a;
-    border: none;
-    padding: 0.8rem 2.5rem;
-    font-weight: 700;
-    font-size: 1.2rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgb(101 137 167 / 0.7);
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-  }
-
-  .btn:hover {
-    background-color: #4a647d;
-  }
-
-  /* Social icons */
-  .social {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .social a {
-    color: #6589a7;
-    font-size: 2rem;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .social a:hover {
-    color: #a1b9ce;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .glitch {
-      font-size: 12vw;
-    }
-    .release-date {
-      font-size: 5vw;
-    }
-    .btn {
-      padding: 0.7rem 2rem;
-      font-size: 1rem;
-    }
-  }
-</style>
-<!-- FontAwesome for social icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  </style>
 </head>
 <body>
-
-  <h1 class="glitch" data-text="PLOT TWIST">PLOT TWIST</h1>
-  <div class="release-date">August 25</div>
-
-  <div class="btns">
-    <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Listen on Spotify</a>
-    <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Listen on Apple Music</a>
-  </div>
-
-  <div class="social">
-    <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-    <a href="#" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-  </div>
-
+  <img src="coming-soon.jpg" alt="Coming Soon">
 </body>
 </html>
